@@ -1,0 +1,561 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: ubuntu;
+  font-weight: 400;
+  color: hsl(231, 11%, 63%);
+  font-size: 1rem;
+}
+
+ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin-block-start: 1.5rem;
+}
+
+label {
+  text-transform: capitalize;
+  font-family: ubuntu;
+  font-weight: 500;
+  color: hsl(213, 96%, 18%);
+  cursor: pointer;
+}
+
+h1 {
+  font-family: ubuntu;
+  font-weight: 700;
+  color: hsl(213, 96%, 18%);
+  margin-block-end: 0.5rem;
+}
+
+input {
+  cursor: pointer;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(231, 100%, 99%);
+}
+
+.container {
+  width: clamp(43.75rem, 100%, 12.5rem);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.sidebar {
+  background-image: url(../public/images/bg-sidebar-mobile.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 2rem;
+  padding-block-end: 7rem;
+}
+
+.sidebar-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.step-info {
+  display: none;
+}
+
+.step-btn {
+  border-radius: 50%;
+  border: 0.05rem solid white;
+  background-color: transparent;
+  aspect-ratio: 1;
+  width: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: ubuntu;
+  font-weight: 500;
+  color: hsl(0, 0%, 100%);
+}
+
+.current-step {
+  background-color: hsl(206, 94%, 87%);
+  color: hsl(213, 96%, 18%);
+  border-color: hsl(206, 94%, 87%);
+}
+
+.form-section-main, .success-section {
+  background-color: white;
+  padding: 2rem 1.5rem;
+  border-radius: 0.5rem;
+  margin-block-start: -5.5rem;
+  width: 95%;
+  margin-inline: auto;
+  box-shadow: 0 0.5rem 2rem hsl(229, 24%, 87%);
+}
+.form-section-main p, .success-section p {
+  max-width: 90%;
+}
+
+.form-section-footer {
+  background-color: white;
+  padding: 1rem;
+  margin-block-start: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.next-btn, .submit-btn, .back-btn {
+  padding: 0.7rem 0.9rem;
+  background-color: hsl(213, 96%, 18%);
+  border: none;
+  border-radius: 0.3rem;
+  color: hsl(231, 100%, 99%);
+  text-transform: capitalize;
+  font-size: inherit;
+}
+.next-btn:hover, .submit-btn:hover, .back-btn:hover {
+  background-color: #03418c;
+}
+
+.error-msg {
+  color: hsl(354, 84%, 57%);
+  margin: 0;
+  text-align: right;
+  font-size: 0.95rem;
+}
+
+.back-btn {
+  border: none;
+  background-color: transparent;
+  font-family: ubuntu;
+  font-weight: 500;
+  color: hsl(231, 11%, 63%);
+}
+.back-btn:hover {
+  color: hsl(213, 96%, 18%);
+  background-color: transparent;
+}
+
+.first-step-form input {
+  width: 100%;
+  border-radius: 0.3rem;
+  border: 0.02rem solid hsl(229, 24%, 87%);
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  font-family: inherit;
+  margin-block: 0.3rem 1.5rem;
+  color: hsl(213, 96%, 18%);
+}
+.first-step-form input:focus {
+  outline-color: hsl(243, 100%, 62%);
+}
+
+input.error {
+  border-color: hsl(354, 84%, 57%);
+}
+
+.label-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input[type=radio] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: absolute;
+}
+
+.plan-cards-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.plan-card {
+  border: 1px solid hsl(229, 24%, 87%);
+  border-radius: 0.4rem;
+  flex-grow: 1;
+}
+.plan-card:hover {
+  background-color: hsl(231, 100%, 99%);
+}
+.plan-card label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 1rem;
+  gap: 1rem;
+  border-radius: inherit;
+}
+
+.selected-option {
+  border-color: hsl(243, 100%, 62%);
+  background-color: hsl(231, 100%, 99%);
+}
+
+.plan {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.plan-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-block: 0.4rem;
+  text-transform: none;
+  font-weight: 400;
+  color: hsl(231, 11%, 63%);
+  font-size: 1rem;
+}
+
+.plan-price-span {
+  color: hsl(213, 96%, 18%);
+  font-weight: 400;
+}
+
+.billing-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-block: 2rem;
+  background-color: hsl(217, 100%, 97%);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-transform: capitalize;
+  font-family: ubuntu;
+  font-weight: 500;
+  color: hsl(231, 11%, 63%);
+}
+
+label[for=toggle-switch] {
+  width: 5rem;
+  height: 2rem;
+  position: relative;
+}
+
+#toggle-switch {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.billing-monthly {
+  color: hsl(213, 96%, 18%);
+}
+
+.slider {
+  display: block;
+  background-color: hsl(213, 96%, 18%);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  transition: 0.3s;
+  position: absolute;
+  border-radius: 3rem;
+  width: 5rem;
+}
+.slider::before {
+  position: absolute;
+  content: "";
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 50%;
+  height: 1.4rem;
+  aspect-ratio: 1;
+  top: 0.3rem;
+  left: 0.3rem;
+  transition: 0.3s;
+}
+
+input:checked + .slider:before {
+  transform: translateX(3rem);
+}
+
+.add-ons-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.option-card {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border: 0.1rem solid hsl(229, 24%, 87%);
+  border-radius: 0.4rem;
+  padding: 1rem;
+  gap: 1rem;
+}
+.option-card:hover {
+  border-color: hsl(243, 100%, 62%);
+}
+
+.add-on-title, .add-on-subtitle {
+  margin: 0;
+}
+
+.add-on-subtitle {
+  color: hsl(231, 11%, 63%);
+}
+
+.add-on-price {
+  color: hsl(243, 100%, 62%);
+  text-transform: none;
+  margin-left: auto;
+}
+
+input[type=checkbox] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0.01rem solid hsl(229, 24%, 87%);
+  width: 1.5rem;
+  aspect-ratio: 1;
+  position: relative;
+  border-radius: 0.3rem;
+}
+input[type=checkbox]:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: url(/images/check.png) hsl(243, 100%, 62%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  border-radius: inherit;
+}
+
+input[type=checkbox]:checked:before {
+  transform: scale(1);
+}
+
+.summary {
+  background-color: hsl(217, 100%, 97%);
+  border-radius: 0.4rem;
+  padding: 1rem;
+}
+
+.plan-selected {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.01rem solid hsl(229, 24%, 87%);
+  padding-block-end: 1rem;
+  font-family: ubuntu;
+  font-weight: 700;
+  color: hsl(213, 96%, 18%);
+  text-transform: capitalize;
+}
+
+.plan-info {
+  width: 100%;
+}
+.plan-info p {
+  margin: 0;
+}
+.plan-info button {
+  border: none;
+  background-color: transparent;
+  text-transform: capitalize;
+  padding: 0;
+  margin: 0;
+  font-family: ubuntu;
+  font-weight: 400;
+  color: hsl(231, 11%, 63%);
+  text-decoration: underline;
+}
+.plan-info button:hover {
+  color: hsl(213, 96%, 18%);
+}
+
+.plan-price {
+  font-family: ubuntu;
+  font-weight: 700;
+  color: hsl(213, 96%, 18%);
+}
+
+.add-on-summary p {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+.add-on-summary p span {
+  font-family: ubuntu;
+  font-weight: 500;
+  color: hsl(213, 96%, 18%);
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+.total span {
+  font-family: ubuntu;
+  font-weight: 700;
+  color: hsl(243, 100%, 62%);
+}
+
+.submit-btn {
+  background-color: hsl(243, 100%, 62%);
+}
+.submit-btn:hover {
+  background-color: hsl(228, 100%, 84%);
+}
+
+.fourth-step-form {
+  height: 100%;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.success-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  min-height: 70vh;
+}
+
+.success-section {
+  margin-bottom: auto;
+  text-align: center;
+}
+
+@media screen and (min-width: 43.75rem) {
+  main {
+    padding: 1rem;
+  }
+  .container {
+    width: clamp(56.25rem, 90%, 43.75rem);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    min-height: 70vh;
+    padding: 1rem;
+    gap: 1rem;
+    background-color: hsl(0, 0%, 100%);
+    height: -moz-max-content;
+    height: max-content;
+    border-radius: 0.4rem;
+    box-shadow: 0 0.4rem 4rem hsl(229, 24%, 87%);
+  }
+  .sidebar {
+    border-radius: 0.5rem;
+    width: 50%;
+    background-image: url(../public/images/bg-sidebar-desktop.svg);
+    background-position: center;
+    background-size: cover;
+  }
+  .sidebar-btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  .sidebar-li {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+  }
+  .step-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: hsl(229, 24%, 87%);
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .step-info span {
+    font-family: ubuntu;
+    font-weight: 700;
+    color: hsl(0, 0%, 100%);
+  }
+  .form-section {
+    width: 100%;
+    flex-grow: 3;
+  }
+  .form-section-main, .success-section {
+    margin-block-start: 0;
+    box-shadow: none;
+  }
+  .plan-cards-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  .plan-card label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1rem;
+    flex-grow: 1;
+  }
+  .success-container {
+    height: 100%;
+  }
+  .success-section {
+    text-align: center;
+    margin-top: auto;
+  }
+}/*# sourceMappingURL=index.css.map */

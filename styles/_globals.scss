@@ -1,0 +1,73 @@
+@use 'sass:math';
+
+$text-dark: hsl(213, 96%, 18%);
+$accent: hsl(243, 100%, 62%);
+$accent-hover: hsl(228, 100%, 84%);
+$skyblue: hsl(206, 94%, 87%);
+$clr-error: hsl(354, 84%, 57%);
+$text-light: hsl(231, 11%, 63%);
+$white: hsl(0, 0%, 100%);
+$light-grey: hsl(229, 24%, 87%);
+$dirty-white: hsl(217, 100%, 97%);
+$alabaster: hsl(231, 100%, 99%);
+
+* {
+    box-sizing: border-box;
+}
+
+@mixin flex($dir, $jus, $al) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $jus;
+    align-items: $al;  
+}
+
+@mixin text($color, $weight: 400) {
+    font-family: ubuntu;
+    font-weight: $weight;
+    color: $color;
+}
+
+@function px-to-rem($px, $base: 16) {
+    @return math.div($px, $base) * 1rem;
+}
+
+body {
+    margin: 0;
+    @include text($text-light, );
+    font-size: 1rem;
+}
+
+ul {
+    padding-left: 0; 
+    list-style-type: none; 
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin-block-start: 1.5rem; 
+}
+
+
+label {
+    text-transform: capitalize;
+    @include text($text-dark, 500); 
+    cursor: pointer;
+}
+
+h1 {
+    @include text($text-dark, 700);
+    margin-block-end: .5rem;
+}
+
+input {
+    cursor: pointer;
+}
+

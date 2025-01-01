@@ -1,0 +1,539 @@
+// globals
+@use 'sass:math';
+
+$text-dark: hsl(213, 96%, 18%);
+$accent: hsl(243, 100%, 62%);
+$accent-hover: hsl(228, 100%, 84%);
+$skyblue: hsl(206, 94%, 87%);
+$clr-error: hsl(354, 84%, 57%);
+$text-light: hsl(231, 11%, 63%);
+$white: hsl(0, 0%, 100%);
+$light-grey: hsl(229, 24%, 87%);
+$dirty-white: hsl(217, 100%, 97%);
+$alabaster: hsl(231, 100%, 99%);
+
+* {
+    box-sizing: border-box;
+}
+
+@mixin flex($dir, $jus, $al) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $jus;
+    align-items: $al;  
+}
+
+@mixin text($color, $weight: 400) {
+    font-family: ubuntu;
+    font-weight: $weight;
+    color: $color;
+}
+
+@function px-to-rem($px, $base: 16) {
+    @return math.div($px, $base) * 1rem;
+}
+
+body {
+    margin: 0;
+    @include text($text-light, );
+    font-size: 1rem;
+}
+
+ul {
+    padding-left: 0; 
+    list-style-type: none; 
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin-block-start: 1.5rem; 
+}
+
+
+label {
+    text-transform: capitalize;
+    @include text($text-dark, 500); 
+    cursor: pointer;
+}
+
+h1 {
+    @include text($text-dark, 700);
+    margin-block-end: .5rem;
+}
+
+input {
+    cursor: pointer;
+}
+
+// main container
+main {
+    min-height: 100vh;
+    @include flex(row, center, center);
+    background-color: $alabaster;
+}
+
+.container {
+    width: clamp(px-to-rem(700), 100%, px-to-rem(200));
+    min-height: 100vh;
+    @include flex(column, space-between, stretch);
+}
+
+// sidebar
+.sidebar {
+    background-image: url(../public/images/bg-sidebar-mobile.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; 
+    padding: 2rem;
+    padding-block-end: 7rem;
+}
+
+.sidebar-btns {
+    @include flex(row, center, center);
+    gap: 1rem;
+}
+
+.step-info {
+    display: none;
+}
+
+.step-btn {
+    border-radius: 50%;
+    border: .05rem solid white;
+    background-color: transparent;
+    aspect-ratio: 1;
+    width: 2rem;
+    @include flex(row, center, center); 
+    @include text($white, 500);
+}
+
+.current-step {
+    background-color: $skyblue;
+    color: $text-dark;
+    border-color: $skyblue;
+}
+
+// form 
+.form-section-main {
+    background-color: white;
+    padding: 2rem 1.5rem;
+    border-radius: .5rem;
+    margin-block-start: -5.5rem;
+    width: 95%;
+    margin-inline: auto;
+    box-shadow: 0 .5rem 2rem $light-grey; 
+
+    p {
+        max-width: 90%;
+    }
+}
+.form-section-footer {
+    background-color: white;
+    padding: 1rem;
+    margin-block-start: 5rem;
+    @include flex(row, space-between, center); 
+    
+}
+
+.next-btn {
+    padding: .7rem .9rem;
+    background-color: $text-dark;
+    border: none;
+    border-radius: .3rem;
+    color: $alabaster;
+    text-transform: capitalize;
+    font-size: inherit;
+
+    &:hover {
+        background-color: lighten($color: $text-dark, $amount: 10) 
+    }
+}
+
+.error-msg {
+    color: $clr-error;
+    margin: 0;
+    text-align: right;
+    font-size: .95rem;
+}
+
+.back-btn {
+    @extend .next-btn;
+    border: none;
+    background-color: transparent;
+    @include text($text-light, 500);
+
+    &:hover {
+        color: $text-dark;
+        background-color: transparent;
+    }
+}
+
+.first-step-form {
+    input {
+        width: 100%;
+        border-radius: .3rem;
+        border: .02rem solid $light-grey;
+        padding: .7rem 1.2rem;
+        font-size: px-to-rem(16, );
+        font-family: inherit;
+        margin-block: .3rem 1.5rem;
+        color: $text-dark;
+
+        &:focus {
+            outline-color: $accent;
+        }
+    }
+}
+
+input.error {
+    border-color: $clr-error;
+}
+
+.label-group {
+    @include flex(row, space-between, center);
+}
+
+// plan cards
+input[type="radio"] {
+    appearance: none;
+    position: absolute;
+}
+
+.plan-cards-container {
+    @include flex(column, center, stretch);
+    gap: 1rem; 
+}
+
+.plan-card {
+    border: 1px solid $light-grey;
+    border-radius: .4rem;
+    flex-grow: 1;
+
+    &:hover {
+        background-color: $alabaster;
+    }
+
+    label {
+        @include flex(row, flex-start, flex-start);
+        cursor: pointer;
+       padding: 1rem;
+       gap: 1rem;
+       border-radius: inherit;
+    }
+}
+
+.selected-option {
+    border-color: $accent; 
+    background-color: $alabaster; 
+}
+
+.plan {
+    margin: 0; 
+    font-size: 1.3rem;
+} 
+
+.plan-price {
+    @include flex(column, center, flex-start);
+    margin-block: .4rem;
+    text-transform: none;
+    font-weight: 400;
+    color: $text-light;
+    font-size: 1rem;
+}
+
+.plan-price-span {
+    color: $text-dark;
+    font-weight: 400;
+}
+
+// toggle switch
+.billing-options {
+    @include flex(row, center, center);
+    gap: 2rem;
+    margin-block: 2rem; 
+    background-color: $dirty-white;
+    border-radius: .5rem;
+    padding: 1rem;
+    text-transform: capitalize;
+    @include text($text-light, 500);
+}
+
+label[for="toggle-switch"] {
+    width: 5rem;
+    height: 2rem;
+    position: relative;
+}
+
+#toggle-switch {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.billing-monthly {
+    color: $text-dark;
+}
+
+.slider {
+    display: block;
+    background-color: $text-dark;  
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    transition: .3s; 
+    position: absolute;
+    border-radius: 3rem;
+    width: 5rem;
+
+    &::before  {
+        position: absolute;
+        content: '';
+        background-color:$white;
+        border-radius: 50%; 
+        height: 1.4rem;
+        aspect-ratio: 1;
+        top: .3rem;
+        left:.3rem;
+        transition: .3s; 
+    }
+}
+
+input:checked + .slider:before {
+    transform: translateX(3rem);
+}
+
+// add on cards
+.add-ons-options {
+    @include flex(column, center, stretch);
+    gap: 1rem;   
+}
+
+.option-card {
+    width: 100%;
+    @include flex(row, flex-start, center);
+    border: .1rem solid $light-grey;
+    border-radius: .4rem;
+    padding: 1rem;
+    gap: 1rem;
+
+    &:hover {
+        border-color: $accent;
+    }
+}
+
+.add-on-title, .add-on-subtitle {
+    margin: 0;
+}
+
+.add-on-subtitle {
+    color: $text-light;
+}
+
+.add-on-price {
+    color: $accent;
+    text-transform: none;
+    margin-left: auto;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    border: .01rem solid $light-grey; 
+    width: 1.5rem;
+    aspect-ratio: 1;
+    position: relative;
+    border-radius: .3rem;
+
+    &:before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: url(/images/check.png) $accent;   
+        background-position: center;
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        border-radius: inherit;
+    }
+}   
+
+input[type="checkbox"]:checked:before {
+  transform: scale(1);
+}
+
+// summary section
+.summary {
+    background-color: $dirty-white;
+    border-radius: .4rem;
+    padding: 1rem; 
+}
+
+.plan-selected {
+    @include flex(row, space-between, center); 
+    border-bottom:  .01rem solid $light-grey; 
+    padding-block-end: 1rem;
+    @include text($text-dark, 700);
+    text-transform: capitalize;
+}
+
+.plan-info {
+    width: 100%;
+    p {
+        margin: 0;
+    }
+
+    button {
+        border: none;
+        background-color: transparent;
+        text-transform: capitalize;
+        padding: 0;
+        margin: 0;
+        @include text($text-light,);
+        text-decoration: underline;
+        &:hover {
+            color: $text-dark;
+        }
+    }
+}
+
+.plan-price {
+    @include text($text-dark, 700);
+}
+
+.add-on-summary {
+    p {
+        @include flex(row, space-between, center);
+        width: 100%;
+        max-width: 100%;
+
+        span {
+            @include text($text-dark, 500)
+        }
+    }
+}
+
+.total {
+    @include flex(row, space-between, center); 
+    padding: 1rem; 
+
+    span {
+        @include text($accent, 700);
+    }
+}
+
+.submit-btn {
+    @extend .next-btn;
+    background-color: $accent;
+    &:hover {
+        background-color: $accent-hover;
+    }
+}
+
+.fourth-step-form {
+    height: 100%;
+    min-height: 70vh;
+    @include flex(column, space-between, stretch);
+}
+
+// success section
+.success-container {
+    @include flex(column, space-between, stretch);
+  min-height: 70vh;
+}
+
+.success-section {
+    @extend .form-section-main;
+    margin-bottom: auto;
+    text-align: center;
+}
+
+// media queries
+@media screen and (min-width: px-to-rem(700)) {
+    main {
+        padding: 1rem;
+    }
+
+    .container {
+        width: clamp(px-to-rem(900), 90%, px-to-rem(700));
+        @include flex(row, space-between, stretch);
+        min-height: 70vh; 
+        padding: 1rem;
+        gap: 1rem;
+        background-color: $white;
+        height: max-content;
+        border-radius: .4rem;
+        box-shadow: 0 .4rem 4rem $light-grey;
+    }
+
+    .sidebar {
+        border-radius: .5rem;
+        width: 50%;
+        background-image: url(../public/images/bg-sidebar-desktop.svg);
+        background-position: center;
+        background-size: cover;
+    }
+
+    .sidebar-btns {
+        @include flex(column, flex-start, flex-start);
+        gap: 2rem;
+    }
+
+    .sidebar-li {
+        @include flex(row, flex-start, center); 
+        gap: 1rem;
+    }
+
+    .step-info {
+        @include flex(column, center, flex-start);
+        color: $light-grey;
+        text-transform: uppercase;
+        font-weight: 400;;
+
+        span {
+            @include text($white, 700);
+        }
+    }
+
+    .form-section { 
+        width: 100%;
+        flex-grow: 3;
+    } 
+    
+    .form-section-main, .success-section {
+        margin-block-start: 0;
+        box-shadow: none;
+    }
+
+    .plan-cards-container {
+        @include flex(row, space-between, stretch);
+    }
+
+    .plan-card {
+        label {
+            @include flex(column, center, flex-start);
+            gap: 2rem;
+            padding: 1rem;
+            flex-grow: 1;
+        }
+    }
+
+    .success-container {
+        height: 100%;
+    }
+
+    .success-section {
+        text-align: center;
+        margin-top: auto;
+    }
+
+}
